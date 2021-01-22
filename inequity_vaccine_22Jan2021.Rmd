@@ -1,0 +1,109 @@
+---
+title: "Inequity in Vaccine Distribution"
+author: "Erika Crispo, Pace University"
+date: "1/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data from 1/20/2021
+
+The data were provided by Emily Beckman via Givitas. 
+
+```{r }
+dat<-read.csv(file.choose(),header=T)
+dat
+summary(dat)
+```
+
+## Is there a relationship between how many first doses were administered and  county population size?
+
+```{r }
+model1<-lm(dat$Vaccine1PerPerson~dat$Population)
+plot(dat$Vaccine1PerPerson~dat$Population,xlab="County population size",ylab= "First doses per capita")
+abline(model1)
+summary(model1)
+```
+
+We can see that there IS a significant negative relationship between county population size and the per capital number of first vaccine doses administered.
+
+The P value is 0.00691 which means that if we repeated this 'experiment' many times, there is a 0.691% chance we'd get these results based on chance alone. We assume a significant relationship if this chance is 5% or less.
+
+The R^2 value is 0.2876 which means that 28.76% of the pattern in the per capital first doses administered can be explained by the county population size.
+
+## Is there a relationship between how many total vaccine doses were administered and county population size?
+
+```{r}
+model2<-lm(dat$TotalVaccinesPerPerson~dat$Population)
+plot(dat$TotalVaccinesPerPerson~dat$Population,xlab="County population size",ylab= "Total doses per capita")
+abline(model2)
+summary(model2)
+```
+We can see that there IS a significant negative relationship between county population size and the per capita total number of vaccine doses administered.
+
+The P value is 0.0132 which means that if we repeated this 'experiment' many times, there is a 1.3% chance we'd get these results based on chance alone. We assume a significant relationship if this chance is 5% or less.
+
+The R^2 value is 0.2481 which means that 24.81% of the pattern in the per capita total doses administered can be explained by county population size.
+
+## Is there a relationship between how many first doses were administered and the percentage of people in the county who are black?
+
+```{r }
+model3<-lm(dat$Vaccine1PerPerson~dat$PercentBlack)
+plot(dat$Vaccine1PerPerson~dat$PercentBlack,xlab="% black",ylab= "First doses per capita")
+abline(model3)
+summary(model3)
+```
+
+We can see that there IS a significant negative relationship between the percentage of people who are black and the per capita number of first vaccine doses administered.
+
+The P value is 0.00476 which means that if we repeated this 'experiment' many times, there is a 0.476% chance we'd get these results based on chance alone. We assume a significant relationship if this chance is 5% or less.
+
+The R^2 value is 0.3094 which means that 30.94% of the pattern in the per capita first doses administered can be explained by the percentage of people in the county who are black.
+
+## Is there a relationship between how many total doses were administered and the percentage of people in the county who are black?
+
+```{r }
+model4<-lm(dat$TotalVaccinesPerPerson~dat$PercentBlack)
+plot(dat$TotalVaccinesPerPerson~dat$PercentBlack,xlab="% black",ylab= "Total doses per capita")
+abline(model4)
+summary(model4)
+```
+
+We can see that there IS a significant negative relationship between the percentage of people who are black and the per capita number of total vaccine doses administered.
+
+The P value is 0.00476 which means that if we repeated this 'experiment' many times, there is a 0.476% chance we'd get these results based on chance alone. We assume a significant relationship if this chance is 5% or less.
+
+The R^2 value is 0.3094 which means that 30.94% of the pattern in the per capita total doses administered can be explained by the percentage of people in the county who are black.
+
+## Is there a relationship between how many first doses were administered and the percentage of people in the county who are white?
+
+```{r }
+model5<-lm(dat$Vaccine1PerPerson~dat$PercentWhite)
+plot(dat$Vaccine1PerPerson~dat$PercentWhite,xlab="% white",ylab= "First doses per capita")
+abline(model5)
+summary(model5)
+```
+
+We can see that there IS a significant positive relationship between the percentage of people who are white and the per capita number of first vaccine doses administered.
+
+The P value is 0.00196 which means that if we repeated this 'experiment' many times, there is a 0.196% chance we'd get these results based on chance alone. We assume a significant relationship if this chance is 5% or less.
+
+The R^2 value is 0.3595 which means that 35.95% of the pattern in the per capita first doses administered can be explained by the percentage of people in the county who are white.
+
+## Is there a relationship between how many total doses were administered and the percentage of people in the county who are white?
+
+```{r }
+model6<-lm(dat$TotalVaccinesPerPerson~dat$PercentWhite)
+plot(dat$TotalVaccinesPerPerson~dat$PercentWhite,xlab="% white",ylab= "Total doses per capita")
+abline(model6)
+summary(model6)
+```
+
+We can see that there IS a significant positive relationship between the percentage of people who are white and the per capita total number of vaccine doses administered.
+
+The P value is 0.00531 which means that if we repeated this 'experiment' many times, there is a 0.531 chance we'd get these results based on chance alone. We assume a significant relationship if this chance is 5% or less.
+
+The R^2 value is 0.3031 which means that 30.31% of the pattern in the per capita total doses administered can be explained by the percentage of people in the county who are white.
